@@ -488,42 +488,63 @@ dd
 
 1、rpm –qf /bin/ls的功能是什么?
 
+查询ls命令属于哪个软件包
 
 2、mv /bin/ls /tmp/的功能是什么?
 
+造成ls命令误删除假象
 
 3、rpm2cpio /mnt/cdrom/Packages/coreutils-8.4-19.el6.i686.rpm|cpio -idv ./bin/ls 的功能是什么?
 
+提取RPM包中ls命令到当前目录的/bin/ls下 
 
 4、cp /root/bin/ls /bin/的功能是什么?
 
+把ls命令复制至/bin目录，修复丢失文件 
 
 5、yum list的功能是什么?
 
+查询所有可用软件包列表
 
 6、yum search httpd的功能是什么?
 
+搜索服务器上所有和关键字httpd相关的包 
 
 7、yum -y install httpd的功能是什么?
 
+安装httpd，自动回答yes
 
 8、yum -y remove httpd的功能是什么?
 
+删除httpd，自动回答yes
 
-9、mount –t is9660 /dev/sr0 /mnt/cdrom的功能是什么? 10、/etc/fstab这个文件的作用是什么?
+9、mount –t is9660 /dev/sr0 /mnt/cdrom的功能是什么?
 
+> **mount**
+> The mount command calls the mount(2) system call to prepare and graft a special device or the remote node (rhost:path) on to the file system tree at the point mount_point, which must be a directory.
+> If either special or mount_point are not provided, the appropriate information is obtained via the getfsent(3) library routines.
+
+挂在光盘
+
+10、/etc/fstab这个文件的作用是什么?
+
+存放文件系统的静态信息的文件
 
 11、./configure --prefix=/usr/local/apache2的功能是什么?
 
+检测安装平台的目标特征&设置默认安装路径
 
 12、make的功能是什么?
 
+make是一个工具程序（Utility software），经由读取叫做“makefile”的文件，自动化建构软件。它是一种转化文件形式的工具，转换的目标称为“target”；与此同时，它也检查文件的依赖关系，如果需要的话，它会调用一些外部软件来完成任务。它的依赖关系检查系统非常简单，主要根据依赖文件的修改时间进行判断。大多数情况下，它被用来编译源代码，生成结果代码，然后把结果代码连接起来生成可执行文件或者库文件。它使用叫做“makefile”的文件来确定一个target文件的依赖关系，然后把生成这个target的相关命令传给shell去执行。
 
 13、make install的功能是什么?
 
+用来安装的，它也从Makefile中读取指令，安装到指定的位置。
 
 14、/usr/local/apache2/bin/apachectl start的功能是什么?
 
+启动 apache 服务器
 
 ## 用户和用户组管理
 
