@@ -1157,168 +1157,267 @@ source命令通常用于重新执行刚修改的初始化文件，使之立即�
 
 1、正则表达式是用来在文件中匹配符合条件的字符串，正则是包含匹配吗？
 
+正则表达式用来在文件中匹配符合条件的字符串，正则是包含匹配。grep、awk、sed 等命令可以支持正则表达式。 
+
 2、通配符是用来在文件中匹配符合条件的字符串，通配符是完全匹配吗?
+
+通配符在系统中用来匹配符合条件的文件名，通配符是完全匹配。 
 
 3、常用的shell编程四剑客是指find、grep、awk(配合printf)和sed吗?
 
+是
+
 4、正则表达式中元字符*、.、^、$、[]、[^]、\、\{n}、\{n,\}、\{n,m\}的作用分别是什么?
+
+* 前一个字符匹配0次或任意多次。 
+. 匹配除了换行符以外任意一个字符。相当于通配符?
+^ 匹配行首。如，^hello会匹配以hello开头的行。 
+$ 匹配行尾。如，hello$会匹配以hello结尾的行。 
+[] 匹配中括号指定的任意一个字符，只匹配一个字符。 如，[aeiou]匹配任意一个元音字母，[0-9]匹配任意以为数字， [a-z][0-9]匹配小写字母和一位数字构成的两位字符。相当于通配符[] 
+[^] 匹配出中括号的字符以外的任意一个字符。如，[^0-9]匹配任意一位非 数字字符，[^a-z]表示任意一位非小写字母。 
+\ 转义符。用于取消特殊符号的含义。
+\{n} 表示其前面的字符恰好出现n次。如，[0-9]\{4\}匹配4位数字， [1][3-8][0-9]\{9\}匹配手机号码 
+\{n,\} 表示前面的字符出现不小于n次。如，[0-9]\{2,\}表示两位及以上的数字。 
+\{n,m\} 表示前面的字符至少出现n次，最多出现m次。如[a-z]\{6,8\}匹配6到8位 的小写字母。 
 
 5、grep "a*" test_rules.txt 该命令的功能是什么?
 
+匹配所有内容，包括空白行
 
 6、grep "aaa*" test_rules.txt 该命令的功能是什么?
 
+匹配至少包含有两个连续a的字符串 
+
 7、grep "s..d" test_rules.txt 该命令的功能是什么?
+
+匹配在s和d这两个字母之间一定有两个字符的单词 
 
 8、grep "^M" test_rules.txt 该命令的功能是什么?
 
+匹配以大写“M”开头的行 
+
 9、grep "n$" test_rules.txt 该命令的功能是什么?
+
+匹配以小写“n”结尾的行
 
 10、grep -n "^$" test_rules.txt 该命令的功能是什么?
 
+匹配空白行，并显示行号 
+
 11、grep "s[ao]id" test_rules.txt该命令的功能是什么?
+
+匹配s和i字母中，要不是a，要不是o 
 
 12、grep "[0-9]" test_rules.txt 该命令的功能是什么?
 
+匹配任意一个数字 
+
 13、grep "^[a-z]" test_rules.txt 该命令的功能是什么?
+
+匹配用小写字母开头的行 
 
 14、grep "^[^0-9]" test_rules.txt 该命令的功能是什么?
 
+匹配不含数字开头的行 
+
 15、grep "^[^a-z]" test_rules.txt 该命令的功能是什么?
+
+匹配不是小写字母开头的行
 
 16、grep "^[^a-zA-Z]" test_rules.txt 该命令的功能是什么?
 
+匹配不是字母开头的行 
+
 17、grep "\.$" test_rules.txt 该命令的功能是什么?
 
+匹配使用“.”结尾的行 
 
 18、grep “a\{3\}" test_rules.txt 该命令的功能是什么?
 
+匹配a字母连续出现三次的字符串 
+
 19、grep "[0-9]\{3\}" test_rules.txt 该命令的功能是什么?
+
+匹配包含连续的三个数字的字符串 
 
 20、grep "^[0-9]\{3,\}[a-z]" test_rules.txt该命令的功能是什么?
 
+匹配最少用连续三个数字开头的行
+
 21、grep "sa\{1,3\}i" test_rules.txt该命令的功能是什么?
 
+匹配在字母s和字母i之间有最少一个a，最多三个a 
 
 22、cut -f 2 student.txt 该命令的功能是什么?
 
+提取第2个字段(列)
+
 23、cut -f 2,4 student.txt该命令的功能是什么?
 
+提取第2、4个字段(列)
 
 24、cut -d ":" -f 1,3 /etc/passwd该命令的功能是什么?
 
+提取/etc/passwd的第1和3列，并用:号隔开 
 
 25、df -h | grep "sda2" |cut -d " " -f 5该命令的局限是什么?
 
 
+
 26、printf %s 1 2 3 4 5 6该命令的功能是什么?
 
+输出字符串 
 
 27、printf %s %s %s 1 2 3 4 5 6 该命令的功能是什么?
 
-
+ 
 28、printf '%s %s %s' 1 2 3 4 5 6该命令的功能是什么?
 
+每三个输出一组
 
 29、printf ‘%s %s %s\n’ 1 2 3 4 5 6该命令的功能是什么?
 
+每三个输出一组，并换行 
 
 30、printf '%s' $(cat student2.txt)该命令的功能是什么?
 
+不调整格式输出 
 
 31、printf '%s\t %s\t %s\t %s\t %s\t %s\n' $(cat student2.txt)该命令的功能是什么?
 
+调整格式输出 
+
 32、print命令与printf命令有什么不同?
 
+**print**
+print会在每个输出之后自动加入一个换行符(Linux默认没有print命令)
+
+**printf**
+printf是标准格式输出命令，并不会自动加入换行符，如果需要换行符，需要手工添加。
 
 33、df -h |awk '{print $1 "\t" $3}'该命令的功能是什么?
 
+无条件输出第1、3列 
 
 34、awk '{printf $2 "\t" $6 "\n"}' student2.txt 该命令的功能是什么?
 
+无条件输出student2.txt文件的第2、6列 
 
 35、awk 'BEGIN{printf "This is a transcript \n"}{printf $2 "\t" $6 "\n"}' student2.txt该命 令的功能是什么?
 
+所有动作之前执行 
 
 36、cat /etc/passwd | grep "/bin/bash" |awk 'BEGIN{FS=":"}{printf $1 "\t" $3 "\n"}‘该 命令的功能是什么?
 
+FS内置变量 
 
 37、awk 'END{printf "The End\n"}{printf $2 "\t" $6 "\n"}' stu2.txt 该命令的功能是什么?
 
+所有动作之后执行 
+
 38、cat stu2.txt |grep -v Name | awk '$6>=87 {printf $2 "\n"}'该命令的功能是什么?
+
+关系运算符 
 
 39、sed '2p' student2.txt '该命令的功能是什么?
 
+查看文件的第二行 
 
 40、sed -n '2p' student2.txt '该命令的功能是什么?
 
+查看文件的第二行 
+读取下一个输入行，用下一个命令处理新的行而不是用第一个命令
 
 41、df -h |sed -n "2p" '该命令的功能是什么?
 
+查看磁盘信息的第二行 
+读取下一个输入行，用下一个命令处理新的行而不是用第一个命令
 
 42、sed -n '2,4p' student2.txt '该命令的功能是什么?
 
+输出第二行到第四行的数据 
 
 43、sed '2,4d' student2.txt '该命令的功能是什么?
 
+删除第二行到第四行的数据，但不修改文件本身。
 
 44、sed '2a hello' student2.txt'该命令的功能是什么?
 
-
+在第二行后追加hello 
 45、sed '2i cao \zhao' student2.txt'该命令的功能是什么?
 
+在第二行的前面插入两行数据cao和zhao 
 
 46、sed '2c No such person' student2.txt'该命令的功能是什么?
 
+数据替换 
 
 47、sed '3s/74/99/g' student2.txt该命令的功能是什么?
 
+把第三行中的74替换为99 
 
 48、sed -i '3s/74/99/g' student2.txt该命令的功能是什么?
 
+将替换写入文件 
 
 49、sed -e 's/Lisi//g;s/Wangwu//g' student2.txt 该命令的功能是什么? (提醒:22~49的就是Shell编程其中三剑客了。)
 
+同时把Lisi和Wangwu替换为空 
 
 50、sort /etc/passwd该命令的功能是什么?
 
+排序用户信息文件
 
 51、sort -r /etc/passwd该命令的功能是什么?
 
+反向排序 
 
 52、sort -t ":" -k 3,3 /etc/passwd该命令的功能是什么?
 
+指定分隔符为“:”，用第三字段开头，第三字段结尾排序，就是只用第三字段排序 
 
 53、sort -n -t ":" -k 3,3 /etc/passwd该命令的功能是什么?
 
+以数值来排序
 
 54、wc -l /etc/passwd该命令的功能是什么?
 
+统计文件行数
 
 55、test -e /root/install.log该命令的功能是什么?
 
+判断该文件是否存在(存在为真)
 
 56、[ -e /root/install.log ]该命令的功能是什么?
 
+判断该文件是否存在(存在为真)
 
 57、[ -d /root ] && echo "yes" || echo "no"该命令的功能是什么?
 
+第一个判断命令如果正确执行，则打印“yes” 否则打印“no”
 
 58、[ -w /root/student2.txt ] && echo yes || echo no该命令的功能是什么?
 
+判断文件是否有写权限 
 
 59、[ /root/student2.txt -ef /tmp/stu.txt ] && echo yes || echo no该命令的功能是什么?
 
+测试是否硬链接 
 
 60、[ 23 -gt 24 ] && echo yes || echo no该命令的功能是什么?
 
+判断整数1是否大于整数2(大于为真) 
 
 61、[ -z "$name" ] && echo yes || echo no该命令的功能是什么?
 
+判断name变量是否为空，不为空，返回no 
 
 62、[ "$aa" == "bb" ]&& echo yes || echo no 该命令的功能是什么?
 
+判断变量aa是否等于bb
 
 63、[ -n "$aa" -a "$aa" -gt 23 ] && echo yes || echo no该命令的功能是什么?
+
+判断变量aa是否有值，同时判断变量aa是否 大于23，因为aa的值不大于23，所以第一个 判断值虽然为真，返回的结果也是假 
 
 
