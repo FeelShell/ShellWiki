@@ -267,7 +267,69 @@ tar -ztvf test.tar.gz # 查看，不解压
 
 ## 关机和重启命令
 
+shutdown [选项] 时间
 
+-c 取消前一个关机命令
+-h 关机
+-r 重启
+
+halt
+poweroff
+init 0
+
+reboot
+init 6
+
+runlevel
+
+logout
 
 ## 其他常用命令
 
+### mount
+
+```shell
+# 查询系统中已经挂载的设备
+mount
+
+# 依据配置文件 /etc/fstab 的内容，自动挂载
+mount -a
+
+```
+
+mount [-t 文件系统] [-o 特殊选项] 设备文件名 挂载点
+- -t 文件系统：加入文件系统类型来指定挂载的类型，可以ext3 ext4 iso9660 等文件系统
+- -o 特殊选项：可以指定挂载的额外选项
+
+mount -o remount,noexec /home/
+
+#### 挂载光盘
+
+```shell
+# 建立挂载点
+mkdir /mnt/cdrom/
+
+# 挂载光盘
+mount -t iso9660 /dev/sr0 /mnt/cdrom/
+mount /dev/sr0 /mnt/cdrom/
+```
+
+#### 卸载
+
+```shell
+umount 设备文件名／挂载点
+```
+
+#### 挂载U盘
+```shell
+# 查看系统中已经识别的硬盘,查看U盘设备文件名
+fdisk -l
+
+# Linux 默认是不支持 NTFS 文件系统的
+mount -t vfat /dev/sdb1 /mnt/usb/
+```
+
+w
+who
+last
+lastlog
