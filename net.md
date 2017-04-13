@@ -114,6 +114,61 @@ DNS服务
 
 ## Config
 
+### IP Config
+
+#### ifconfig
+
+临时配置
+
+ifconfig eth0 192.168.254.200 netmask 255.255.255.0
+
+#### setup
+
+永久配置 / RedHat 专有系列
+
+service network restart
+
+### Config File
+
+#### 网卡信息文件
+
+/etc/sysconfig/network-scripts/ifcfg-eth0
+
+DEVICE=eth0                                       网卡设备名
+BOOTPROTO=none                                    是否自动获取IP(none static dhcp)
+HWADDR=00:0c:29:17:c4:09                          MAC地址
+NM\_CONTROLLED=yes                                是否可以由Network Manager图形管理工具托管
+ONBOOT=yes                                        是否随网络服务启动，eth0生效
+TYPE=Ethernet                                     类型 以太网
+UUID="44b76c8a-b59f-44d5-83fa-7f98fda86b3d"       惟一识别码
+IPADDR=192.168.0.1                                IP地址
+NETMASK=255.255.255.0                             子网掩码
+GATEWAY=192.168.0.1                               网关
+DNS1=202.106.0.20                                 DNS
+IPV6INIT=no                                       IPv6没有启用
+USERCTL=no                                        不允许非root用户控制此网卡
+
+#### 主机名文件
+
+/etc/sysconfig/network
+
+NETWORKING=yes
+HOSTNAME=localhost.localdomain
+
+hostname newname
+hostname
+
+#### DNS 配置文件
+
+/etc/resolv.conf
+
+nameserver 202.106.0.20
+search localhost
+
+### Server Config
+
+UUID 更新
+
 ## Commands
 
 ## Tools
