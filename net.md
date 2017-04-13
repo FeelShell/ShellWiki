@@ -171,4 +171,43 @@ UUID 更新
 
 ## Commands
 
+### 查看
+
+ifconfig
+
+ifdown 网卡设备名
+ifup 网卡设备名
+
+netstat 选项
+- -t    TCP
+- -u    UDP
+- -n    不使用域名与服务名，而使用IP地址和端口号
+- -l    仅列出在监听状态的网络服务
+- -a    列出所有的网络连接
+
+netstat -tuln
+netstat -an
+netstat -rn
+
+route add default gw 192.168.0.2
+route -n
+
+nslookup www.imooc.com
+
+### 测试
+
+ping [option] ip / domain name -times(3)
+
+telnet [域名/ip] [port] # 远程管理或端口探测
+
+traceroute domain\_name
+
+wget url
+
+tcpdump -i eth0 -nnX port 21
+- -i    指定网卡接口
+- -nn   将数据包中的域名与服务转化为IP和端口
+- -X    以十六进制和ASCII码显示数据包内容
+- port  指定监听端口
+
 ## Tools
