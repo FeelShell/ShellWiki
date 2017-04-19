@@ -238,3 +238,85 @@ lsof -u root
 
 ## 系统定时任务
 
+### at 一次性定时任务
+
+```shell
+# at 服务是否安装
+chkconfig --list | grep atd
+
+service atd status
+
+# at 服务启动
+service atd restart
+```
+
+#### at 访问控制
+ 
+如果系统中有 /etc/at.allow 文件,
+那么，只有写入 /etc/at.allow 文件（白名单）中的用户可以使用at命令,
+(etcat.deny 文件被忽略)
+
+如果系统中没有 /etc/at.allow 文件，
+只有 /etc/at.deny 文件，
+那么写入 /etc/at.deny 文件（黑名单）中的用户不能使用at命令,
+对 root 用户不起作用
+
+如果系统中两个问题都不存在，那么只有root用户可以使用at命令.
+
+at [option] time
+
+option
+- -m 当at工作完成后，无论是否命令有输出，都用email通知执行at命令的用户
+- -c 工作号 显示该at工作的实际内容
+
+time
+- HH:MM
+- HH:MM YYYY-MM-DD
+- HH:MM[am|pm] [month] [date]
+- HH:MM[am:pm] + [minutes|hours|days|weeks]
+
+```shell
+at now +2 minutes
+at> /root/hello.sh >> /root/hello.log
+
+atq
+at -c job\_ID
+
+# 在指定时间重启
+at 02:00 2013-07-26
+at> /bin/sync # 内存同步
+at> /sbin/shutdown -r now
+```
+
+### crontab 循环定时任务
+
+```shell
+chkconfig --list | grep cron
+
+service crond status
+
+service crond restart
+```
+
+- 访问控制
+cron.allow / cron.deny
+
+绝对路径
+
+### 系统的 crontab 设置
+
+写入配置文件 /etc/crontab
+
+- run-parts --> anacron
+
+推荐把执行脚本复制到下列目录下，定时执行
+cron.daily/
+cron.weekly/
+cron.monthly/
+
+### anacron配置
+
+anacron 是用来保证在系统关机的时候错过的定时任务，可以在系统开机之后再执行
+
+/var/spool/anacron/cron.\* 用于记录系统上次执行任务的时间
+
