@@ -132,7 +132,109 @@ renice -10 1845
 
 ## 工作管理
 
+工作管理指的是在单个登录终端中（也就是登录的SHELL界面中）同时管理多个工作的行为。
+
+- 当前登录终端，只能管理当前终端的工作，而不能管理其他登录终端的工作
+- 放入后台的命令必须可以持续运行一段时间，这样我们才能捕捉和操作这个工作
+- 放入后台执行的命令不能和前台用户有交互或需要前台输入，否则放入后台只能暂停，而不能执行
+
+```shell
+# list all the background job
+jobs [-l]
+# -l 显示PID
+
+# method 0
+# 把命令放入后台，并执行
+tar -zcf etc.tar.gz /etc &
+# method 1
+# 按下 CTRL+Z 快捷键，放入后台暂停
+
+# + 代表最近一个放入后台的工作，也是工作恢复时，默认恢复的工作
+# - 代表倒数第二个放入后台的工作
+
+# 恢复到前台
+# % 可以省略
+fg %job_ID
+
+# 暂停的工作恢复到后台执行
+bg %job_ID
+
+# 恢复最近一个 +
+fg
+bg
+```
+
+### 后台命令脱离命令终端执行
+
+deamon 守护进程
+
+- method 0
+/etc/rc.local
+touch /var/lock/subsys/local
+写在这个位置，系统启动时执行
+
+- method 1
+系统定时任务
+
+- method 2
+nohup
+
+```shell
+nohub [command] &
+```
+
 ## 系统资源查看
+
+```shell
+# vmstat [刷新延迟 刷新次数]
+vmstat 1 3
+
+# procs
+# r 等待运行的进程数，数量越大，系统越繁忙
+# b 不可被唤醒的进程数，数量越大，系统越繁忙
+
+# 开机时，内核检测信息
+dmesg | grep CPU
+
+# 查看内存使用状态 
+free [option]
+# -b  Byte
+# -k  KB
+# -m  MB
+# -g  GB
+
+# 查看 CPU 信息
+cat /proc/cpuinfo
+
+uptime
+
+uname -a
+# 内核
+uname -r
+uname -s
+
+# 查看操作系统位数
+file /bin/ls
+
+# 查看发行版
+ls_release -a
+
+# 查看进程调用的文件 或 文件调用的进程
+lsof
+
+# 查询系统中所有进程调用的文件
+lsof | more
+
+# 查询某个文件被哪个进程调用
+lsof /sbin/init
+
+# 查看httpd进程调用了哪些文件
+lsof -c httpd
+
+# 按照用户名查询某用户的进程调用的文件名
+lsof -u root
+
+```
 
 ## 系统定时任务
 
